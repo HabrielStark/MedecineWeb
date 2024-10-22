@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --neon-blue: #00f3ff;
+    --neon-green: #00ff9d;
+  }
+
+  body {
+    @apply antialiased transition-colors duration-500;
+  }
+}
+
+@layer components {
+  .neon-text {
+    @apply text-gray-900 dark:text-[#00f3ff];
+  }
+
+  .dark .neon-text {
+    text-shadow: 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue),
+                 0 0 30px var(--neon-blue);
+  }
+
+  .neon-border {
+    @apply border border-gray-300 dark:border-[#00f3ff];
+  }
+
+  .dark .neon-border {
+    box-shadow: 0 0 10px var(--neon-blue),
+                inset 0 0 10px var(--neon-blue);
+  }
+
+  .theme-toggle-orb {
+    @apply relative w-12 h-12 rounded-full transition-all duration-500;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #00f3ff);
+  }
+
+  .theme-toggle-orb::after {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 transition-opacity duration-500;
+    box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+  }
+
+  .theme-toggle-orb:hover::after {
+    @apply opacity-100;
+  }
+
+  .floating-card {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .magnetic-button {
+    @apply relative transition-transform duration-200 ease-out;
+    transform-style: preserve-3d;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(150%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500 dark:bg-[#00f3ff] rounded-full;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
